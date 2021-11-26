@@ -1,0 +1,111 @@
+import xlsxwriter
+
+
+# Create an new Excel file and add a worksheet.
+workbook = xlsxwriter.Workbook('merge1.xlsx')
+worksheet = workbook.add_worksheet()
+
+# Increase the cell size of the merged cells to highlight the formatting.
+worksheet.set_column('C:Q', width=None)
+worksheet.set_row(0, height=None)
+
+
+
+# Create a format to use in the merged range.
+merge_format = workbook.add_format({
+    'bold': 1,
+    'font_color': 'white',
+    'border': 1,
+    'align': 'center',
+    'valign': 'vcenter',
+    'fg_color': 'black'})
+
+
+# Merge 3 cells.
+worksheet.merge_range('C1:Q1', 'FIELD', merge_format)
+
+merge_format = workbook.add_format({
+    'bold': 1,
+    'border': 1,
+    'align': 'center',
+    'valign': 'vcenter',
+    'fg_color': 'gray'})
+
+# Merge 3 cells over two rows.
+worksheet.merge_range('A1:A3', 'Sr. No.', merge_format)
+worksheet.merge_range('B1:B3', 'Doc Name', merge_format)
+
+merge_format = workbook.add_format({
+    'bold': 1,
+    'border': 1,
+    'align': 'center',
+    'valign': 'vcenter',
+    'fg_color': 'yellow'})
+cell_format1 = workbook.add_format(
+    {'bold':True, 'border':1, 'align':'center', 'bg_color':'yellow'}
+)
+worksheet.write_string('C3', 'Extracted', cell_format1)
+worksheet.write_string('D3', 'Actual', cell_format1)
+worksheet.write_string('E3', 'Confidence', cell_format1)
+
+worksheet.merge_range('C2:E2', 'Loan Amount', merge_format)
+
+merge_format = workbook.add_format({
+    'bold': 1,
+    'border': 1,
+    'align': 'center',
+    'valign': 'vcenter',
+    'fg_color': 'cyan'})
+cell_format1 = workbook.add_format(
+    {'bold':True, 'border':1, 'align':'center', 'bg_color':'cyan'}
+)
+worksheet.write_string('F3', 'Extracted', cell_format1)
+worksheet.write_string('G3', 'Actual', cell_format1)
+worksheet.write_string('H3', 'Confidence', cell_format1)
+
+worksheet.merge_range('F2:H2', 'Interest Rate', merge_format)
+
+merge_format = workbook.add_format({
+    'bold': 1,
+    'border': 1,
+    'align': 'center',
+    'valign': 'vcenter',
+    'fg_color': 'orange'})
+cell_format1 = workbook.add_format(
+    {'bold':True, 'border':1, 'align':'center', 'bg_color':'orange'}
+)
+worksheet.write_string('I3', 'Extracted', cell_format1)
+worksheet.write_string('J3', 'Actual', cell_format1)
+worksheet.write_string('K3', 'Confidence', cell_format1)
+worksheet.merge_range('I2:K2', 'Loan Date', merge_format)
+
+merge_format = workbook.add_format({
+    'bold': 1,
+    'border': 1,
+    'align': 'center',
+    'valign': 'vcenter',
+    'fg_color': 'pink'})
+cell_format1 = workbook.add_format(
+    {'bold':True, 'border':1, 'align':'center', 'bg_color':'pink'}
+)
+worksheet.write_string('L3', 'Extracted', cell_format1)
+worksheet.write_string('M3', 'Actual', cell_format1)
+worksheet.write_string('N3', 'Confidence', cell_format1)
+worksheet.merge_range('L2:N2', 'Maturity Date', merge_format)
+
+merge_format = workbook.add_format({
+    'bold': 1,
+    'border': 1,
+    'align': 'center',
+    'valign': 'vcenter',
+    'fg_color': 'lime'})
+cell_format1 = workbook.add_format(
+    {'bold':True, 'border':1, 'align':'center', 'bg_color':'lime'}
+)
+worksheet.write_string('O3', 'Extracted', cell_format1)
+worksheet.write_string('P3', 'Actual', cell_format1)
+worksheet.write_string('Q3', 'Confidence', cell_format1)
+worksheet.merge_range('O2:Q2', 'Initial Payment Date', merge_format)
+
+
+workbook.close()
